@@ -1,0 +1,264 @@
+\documentclass[fontsize=12pt,twoside=false,parskip=half,notitlepage,DIV=17,french]{scrbook}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{caption}
+\usepackage{minted}
+\usepackage{babel}
+\usepackage[paperheight=9.5in,paperwidth=7in,margin=2cm]{geometry}
+
+\setminted{breaklines, breaksymbolleft=\hspace{2em}, fontsize=\small, frame=single, breakafter=-\\\}]}
+
+
+\title{Compteurs}
+\author{Karnaj}
+
+\begin{document}
+\makeatletter
+\begin{center}
+   \Huge \textbf{\textsf{\@title}} \Large
+
+   \@author
+
+   \Large \@date
+\end{center}
+\makeatother
+
+\renewcommand\thesection{\arabic{section}}
+
+\begin{minted}{latex}
+\section{Section}
+   Section \arabic{section}.
+   \subsection{Sous-section}
+      Section \roman{section}, sous-section \Roman{subsection}.
+\section{Section}
+   Section \alph{section}.
+   \subsection{Sous-section}
+      Section \Alph{section}, sous-section \arabic{subsection}.
+\end{minted}
+
+\section{Section}
+   Section \arabic{section}.
+   \subsection{Sous-section}
+      Section \roman{section}, sous-section \Roman{subsection}.
+\section{Section}
+   Section \alph{section}.
+   \subsection{Sous-section}
+      Section \Alph{section}, sous-section \arabic{subsection}.
+
+\newpage
+
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+\begin{minted}{latex}
+\section{Section}
+   Section \thesection.
+   \subsection{Sous-section}
+      Section \thesection, sous-section \thesubsection.
+\section{Section}
+   Section \thesection.
+   \subsection{Sous-section}
+      Section \thesection, sous-section \thesubsection.
+\end{minted}
+
+\section{Section}
+   Section \thesection.
+   \subsection{Sous-section}
+      Section \thesection, sous-section \thesubsection.
+\section{Section}
+   Section \thesection.
+   \subsection{Sous-section}
+      Section \thesection, sous-section \thesubsection.
+
+\newpage
+
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+
+\begin{minted}{latex}
+\section{Section}
+   On est à la section \arabic{section}, mais j'incrémente le compteur
+   de section \stepcounter{section}et donc on est à la section
+   \arabic{section}.
+\end{minted}
+
+\section{Section}
+   On est à la section \arabic{section}, mais j'incrémente le compteur
+   de section \stepcounter{section}et donc on est à la section
+   \arabic{section}.
+
+
+\newpage
+
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+
+\begin{minted}{latex}
+\section{Section}
+   On est à la section \arabic{section}, mais je mets le compteur de
+   section à -5 \setcounter{section}{-5}et donc on est à la section
+   \arabic{section}.
+\end{minted}
+
+\section{Section}
+   On est à la section \arabic{section}, mais je mets le compteur de
+   section à -5 \setcounter{section}{-5}et donc on est à la section
+   \arabic{section}.
+
+\newpage
+
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+
+\begin{minted}{latex}
+   \section{Section}
+   On est à la section \arabic{section}, mais je rajoute 3 au compteur
+   de section \addtocounter{section}{3} et donc on est à la section
+   \arabic{section}.
+\end{minted}
+
+
+\section{Section}
+   On est à la section \arabic{section}, mais je rajoute 3 au compteur
+   de section \addtocounter{section}{3} et donc on est à la section
+   \arabic{section}.
+
+
+\newpage
+
+   \setcounter{section}{0}
+   \setcounter{subsection}{0}
+
+
+   \begin{minted}{latex}
+\newcounter{compteur}
+\newcounter{compteurLie}[section]
+
+Le compteur « compteur » vaut \arabic{compteur} et
+compteurLie vaut \arabic{compteurLie}.
+
+\stepcounter{compteur}
+\stepcounter{compteurLie}
+\stepcounter{compteurLie}
+
+Le compteur « compteur » vaut \arabic{compteur} et
+compteurLie vaut \arabic{compteurLie}.
+
+\section{Nouvelle}
+
+Le compteur « compteur » vaut \arabic{compteur} et
+compteurLie vaut \arabic{compteurLie}.
+\end{minted}
+
+\newcounter{compteur}
+\newcounter{compteurLie}[section]
+
+Le compteur « compteur » vaut \arabic{compteur} et
+compteurLie vaut \arabic{compteurLie}.
+
+\stepcounter{compteur}
+\stepcounter{compteurLie}
+\stepcounter{compteurLie}
+
+Le compteur « compteur » vaut \arabic{compteur} et
+compteurLie vaut \arabic{compteurLie}.
+
+\section{Nouvelle}
+
+Le compteur « compteur » vaut \arabic{compteur} et
+compteurLie vaut \arabic{compteurLie}.
+
+thecompteur vaut \thecompteur{} et thecompteurLie vaut \thecompteurLie.
+
+
+\newpage
+
+
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+
+\begin{minted}{latex}
+% Avec stepcounter
+\fiche{Les compteurs en LaTeX}
+\section{...}
+\section{...}
+\section{...}
+
+\fiche{Les tableaux en LaTeX} \label{fiche:tableau}
+\section{...}
+\section{...}
+\section{...}
+La fiche \ref{fiche:tableau}.
+\end{minted}
+
+\newcounter{fiche}
+\renewcommand\thefiche{\Roman{fiche}}
+\newcommand{\fiche}[1]{
+  \stepcounter{fiche}
+  \begin{center} \Huge \bfseries Fiche \thefiche{} : #1 \end{center}
+}
+
+\renewcommand\thesection{\thefiche.\arabic{section}}
+
+\fiche{Les compteurs en LaTeX}
+\section{...}
+\section{...}
+\section{...}
+
+\fiche{Les tableaux en LaTeX} \label{fiche:tableau}
+\section{...}
+\section{...}
+\section{...}
+La fiche \ref{fiche:tableau}.
+
+
+
+
+\newpage
+
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{fiche}{0}
+
+\begin{minted}{latex}
+% Avec refstepcounter
+\fiche{Les compteurs en LaTeX}
+\section{...}
+\section{...}
+\section{...}
+
+\fiche{Les tableaux en LaTeX} \label{fiche:tableau}
+\section{...}
+\section{...}
+\section{...}
+La fiche \ref{fiche:tableau}.
+\end{minted}
+
+\renewcommand\thefiche{\Roman{fiche}}
+\renewcommand{\fiche}[1]{
+  \refstepcounter{fiche}
+  \begin{center} \Huge \bfseries Fiche \thefiche{} : #1 \end{center}
+}
+
+\renewcommand\thesection{\thefiche.\arabic{section}}
+
+
+\fiche{Les compteurs en LaTeX}
+\section{...}
+\section{...}
+\section{...}
+
+\fiche{Les tableaux en LaTeX} \label{fiche:tableau}
+\section{...}
+\section{...}
+\section{...}
+La fiche \ref{fiche:tableau}.
+
+
+
+
+\end{document}
